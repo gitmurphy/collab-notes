@@ -82,8 +82,10 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
   Instead of performing a recursive examination of each key-value pair in resources associated with specific namespace(s) each time the `t` function is invoked, we generate a comprehensive set of keys from all namespaces just once.
 
   Make sure your `tsconfig` `compilerOptions` has the `strict` flag or the `strictNullChecks` set to `true`.
-
   Also use TypeScript v5.
+> **Current Migration Status**  
+> **[PENDING]** strictNullChecks is set to true in root tsconfig. TypeScript version is 5 apart from two test apps as mentioned above.
+> TODO: Check if satisfying both of these conditions means that this migration step is completed/ can be skipped.
 
 ### Codemods
 
@@ -100,6 +102,8 @@ If you encounter any issues, please report them to the Codemod team with:
 ```bash
 npx codemod feedback
 ```
+> **Question**  
+> **[PENDING]** Are these codemods optional, they don't appear to be necessary in our case.  
 
 - Removed `setDebug` function in internal logger  
   Based on [this discussion](#), we decided to remove the `setDebug` function.
@@ -110,13 +114,35 @@ npx codemod feedback
 - Changed default value for `returnNull` option to `false`  
   To improve the usage for TypeScript users (in combination with React.js) we decided to set the `returnNull` value to `false` by default.  
   More information can be found [here](#).
+> **Current Migration Status**  
+> **[DONE]** `git grep returnNull` returns nothing for open-ux-tools.
 
 - Dropped support for old browsers and Node.js < v12  
   To have smaller builds and faster loads, we now transpile only for modern browsers and runtimes.  
   More information can be found [here](#).
+> **Current Migration Status**  
+> **[DONE]** `Node version is >=18.x. Presumably only modern browsers are also supported by open-ux-tools.  
 
 - Prefixed ordinal plural keys  
   To help translators, ordinal plural keys are now prefixed with `_ordinal`.
+> **Current Migration Status**  
+> **[PENDING]** 
+> ```
+> // Examples from docs
+> {
+>   "key_ordinal_one": "{{count}}st place", // 1st, 21st, 31st
+>   "key_ordinal_two": "{{count}}nd place", // 2nd, 22nd, 32nd
+>   "key_ordinal_few": "{{count}}rd place", // 3rd, 23rd, 33rd
+>   "key_ordinal_other": "{{count}}th place" // 4th, 5th, 24th, 11th
+> }
+> 
+> // Called like:
+> i18next.t('key', { count: 1, ordinal: true }); // -> "1st place"
+> ```
+> 
+> Our only useage of i18next.t() -- The translation function -- is in a single exported helper function in each (or at least most) of the packages.
+> The implementation appears compatible with v24 but our implementation of TOptions needs to align with TypeScript type adjustments that were made v23.
+> TODO: Ensure that TOptions is compatible with i18next v24.
 
 ---
 
