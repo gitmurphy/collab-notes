@@ -61,7 +61,8 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 
 - `jsonFormat` option has been removed.  
   When a new JSON version is released, you can use the `compatibilityJSON` option, which now only accepts `v4` as value.
-> Both options could be passed as parameters to the i18next.init function. Example from docs:
+> **Current Migration Status**  
+> **[PENDING]** Both options could be passed as parameters to the i18next.init function. Example from docs:
 > ```
 > i18next.init({
 >  compatibilityJSON: 'v3'
