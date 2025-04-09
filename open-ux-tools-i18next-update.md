@@ -37,9 +37,39 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 
 - Now only TypeScript >5 versions are supported.  
   v4 types are now removed from the codebase.
+> **Current Migration Status**  
+> **[PENDING]** TypeScript version is ^4.6.3 in two test applications for integration testing fe-fpm-writer:
+> 
+> ```
+> $ git grep '"typescript":'
+> .eslintrc:            "typescript": {
+> docs/tools-offline-instructions/info/projectModules.json:    "typescript": [
+> examples/ui-prompting-examples/package.json:        "typescript": "5.6.2",
+> package.json:        "typescript": "5.8.2",
+> packages/adp-tooling/templates/project/package.json:        "typescript": "^5.7.3",
+> packages/fe-fpm-writer/test/test-input/integration/basic-lrop-app/ts/package.json:    "typescript": "^4.6.3",
+> packages/fe-fpm-writer/test/test-input/integration/custom-page-app/ts/package.json:    "typescript": "^4.6.3",
+> packages/generator-adp/package.json:        "typescript": "5.3.3",
+> packages/ui-service-inquirer/package.json:        "typescript": "5.3.3",
+> packages/ui-service-sub-generator/package.json:        "typescript": "5.3.3",
+> packages/ui5-application-writer/templates/optional/typescript/package.json:        "typescript": "^5.1.6",
+> packages/ui5-library-sub-generator/test/unit/expected-output/tslibrary1/package.json:    "typescript": "^5.1.6",
+> packages/ui5-library-writer/templates/optional/typescript/package.json:      "typescript": "^5.1.6",
+>   
+> ```
+> TODO: Check if this needs to be updated with Austin or Donal.  
 
 - `jsonFormat` option has been removed.  
   When a new JSON version is released, you can use the `compatibilityJSON` option, which now only accepts `v4` as value.
+> Both options could be passed as parameters to the i18next.init function. Example from docs:
+> ```
+> i18next.init({
+>  compatibilityJSON: 'v3'
+> });
+> ```
+>
+> Neither appear in open-ux-tools.
+
 
 ---
 
