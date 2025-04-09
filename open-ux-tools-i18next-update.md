@@ -67,6 +67,9 @@ npx codemod feedback
 
 - Removed `setDebug` function in internal logger  
   Based on [this discussion](#), we decided to remove the `setDebug` function.
+> **Current Migration Status**  
+> Discussion above defines usage as `i18next.logger.setDebug(true);`
+> `git grep setDebug` returns nothing.
 
 - Changed default value for `returnNull` option to `false`  
   To improve the usage for TypeScript users (in combination with React.js) we decided to set the `returnNull` value to `false` by default.  
