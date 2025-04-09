@@ -4,16 +4,16 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 ## v23.x.x to v24.0.0
 
 - Remove support for older environments
-> **Current Migration Status**
+> **Current Migration Status**  
 > There are no older environments in use that we are aware of.
 
 - Remove old i18next JSON formats  
   To convert your existing v3 translations to the v4 format, have a look at [`i18next-v4-format-converter`](https://github.com/i18next/i18next-v4-format-converter) or [this web tool](https://format-converter.i18next.com).
-> **Current Migration Status**
+> **Current Migration Status**  
 > Under i18next JSON v4, docs state that "The only difference to v3 is the plural suffixes." TODO: Check https://www.i18next.com/translation-function/plurals#how-to-find-the-correct-plural-suffix to ensure that plural suffixes are current.
 
 - Remove support for compatibility to the very first v1 API (old docs)
-> **Current Migration Status**
+> **Current Migration Status**  
 > From inspecting the documentation, it does not appear that we are using the v1 API. TODO: Confirm with Austin or Donal.
 
 - `Intl` API is mandatory now and will not fallback anymore.  
@@ -25,7 +25,7 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 - Fallback to `dev` language if plural rule not found
 
 - Dropped support for Node.js < v14
-> **Current Migration Status**
+> **Current Migration Status**  
 > Root package.json states: `"node": ">=18.x"`
 
 ### TypeScript
