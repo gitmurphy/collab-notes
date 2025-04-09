@@ -28,6 +28,9 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 - Renamed `initImmediate` to `initAsync`
 
 - Fallback to `dev` language if plural rule not found
+> **Current Migration Status** 
+> **[DONE]** dev language is defined by fallbackLng option in init function or else first detected language.  
+> There is a fallnackLng defined in all of the init functions in open-ux-tools.  
 
 - Dropped support for Node.js < v14
 > **Current Migration Status**  
