@@ -5,20 +5,25 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 
 - Remove support for older environments
 > **Current Migration Status**  
-> There are no older environments in use that we are aware of.
+> **[PENDING]** There are no older environments in use that we are aware of.
+> TODO: Confirm with Austin or Donal.
 
 - Remove old i18next JSON formats  
   To convert your existing v3 translations to the v4 format, have a look at [`i18next-v4-format-converter`](https://github.com/i18next/i18next-v4-format-converter) or [this web tool](https://format-converter.i18next.com).
 > **Current Migration Status**  
-> Under i18next JSON v4, docs state that "The only difference to v3 is the plural suffixes." TODO: Check https://www.i18next.com/translation-function/plurals#how-to-find-the-correct-plural-suffix to ensure that plural suffixes are current.
+> **[PENDING]** Under i18next JSON v4, docs state that "The only difference to v3 is the plural suffixes." 
+> TODO: Check https://www.i18next.com/translation-function/plurals#how-to-find-the-correct-plural-suffix to ensure that plural suffixes are current.  
 
 - Remove support for compatibility to the very first v1 API (old docs)
 > **Current Migration Status**  
-> From inspecting the documentation, it does not appear that we are using the v1 API. TODO: Confirm with Austin or Donal.
+> **[PENDING]** From inspecting the documentation, it does not appear that we are using the v1 API.  
+> TODO: Confirm with Austin or Donal.
 
 - `Intl` API is mandatory now and will not fallback anymore.  
   Use a polyfill (`Intl.PluralRules` and `Intl.getCanonicalLocales`) if your environment does not support it.  
   For those who really need the old behaviour, you'll need to create a compatibility layer similar to [this](#).
+> **Current Migration Status** 
+> **[DONE]** We are already using the `Intl` API (e.g. `Intl.DateTimeFormatOptions`) and our environment (Node.js 18+, modern browsers) fully supports required features like `Intl.PluralRules` and `Intl.getCanonicalLocales`. No action required.  
 
 - Renamed `initImmediate` to `initAsync`
 
@@ -26,7 +31,7 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 
 - Dropped support for Node.js < v14
 > **Current Migration Status**  
-> Root package.json states: `"node": ">=18.x"`
+> **[DONE]** Root package.json states: `"node": ">=18.x"`
 
 ### TypeScript
 
@@ -68,7 +73,7 @@ npx codemod feedback
 - Removed `setDebug` function in internal logger  
   Based on [this discussion](#), we decided to remove the `setDebug` function.
 > **Current Migration Status**  
-> Discussion above defines usage as `i18next.logger.setDebug(true);`
+> **[DONE]** Discussion above defines usage as `i18next.logger.setDebug(true);`
 > `git grep setDebug` returns nothing.
 
 - Changed default value for `returnNull` option to `false`  
