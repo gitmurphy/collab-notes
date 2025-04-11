@@ -177,17 +177,19 @@ npx codemod feedback
 > i18next.t('key', { count: 1, ordinal: true }); // -> "1st place"
 > ```
 > 
-> Our only useage of i18next.t() -- The translation function -- is in a single exported helper function in each (or at least most) of the packages.
-> The implementation appears compatible with v24 but our implementation of TOptions needs to align with TypeScript type adjustments that were made v23.
+> `git grep '_ordinal_'` returns nothing.
 > 
-> TODO: Ensure that TOptions is compatible with i18next v24.
+> TODO: Check with Austin/Donal/Ian how we can test open-ux-tools by passing plurals to it?
 
 ---
 
 ## v21.x.x to v22.0.0
 
 Since this is a major rewrite for TypeScript usage, we decided to create a major version.  
-For JavaScript users, `v22.0.0` is equivalent to `21.10.0`.
+For JavaScript users, `v22.0.0` is equivalent to `21.10.0`.  
+
+> **Current Migration Status**  
+> **[DONE]** Project is already compatibile with TypeScript.
 
 ---
 
@@ -213,12 +215,15 @@ i18next.init({
 There is also support for ordinal numbers (referring to the ordering or ranking of things, e.g. "1st", "2nd", "3rd" in English).  
 Learn more about plurals: https://www.i18next.com/translation-function/plurals
 
+> **Current Migration Status**  
+> **[DONE]** Pluralization looked at under v24 migration.
+
 ---
 
 ### `skipOnVariables = true`
 
 By default, the `skipOnVariables` option is now set to `true`.  
-To enforce old behaviour, you can set `skipOnVariables = false` on i18next init call.
+- [ ] To enforce old behaviour, you can set `skipOnVariables = false` on i18next init call.  
 
 ```js
 import i18next from 'i18next';
@@ -230,7 +235,12 @@ i18next.init({
 }, (err, t) => {
   /* resources are loaded */
 });
-```
+```  
+
+> **Current Migration Status**  
+> **[PENDING]** `git grep skipOnVariables` returns nothing. 
+>
+> TODO: Check if our logic relies on the old default false value for skipOnVariables.
 
 ---
 
@@ -238,7 +248,10 @@ i18next.init({
 
 i18next now automatically tries to detect natural language keys.  
 This way there is no need to set `nsSeparator` or `keySeparator` option to `false`.  
-In case you want to skip this natural language detection, provide a `keySeparator` and/or a `nsSeparator` option.
+In case you want to skip this natural language detection, provide a `keySeparator` and/or a `nsSeparator` option.  
+
+> **Current Migration Status**  
+> **[DONE]** Both `git grep nsSeparator` and `git grep keySeparator` return nothing.
 
 ---
 
@@ -255,7 +268,19 @@ The old deprecated `whitelist` options and functions have been definitively remo
 ### New `resolvedLanguage`
 
 There is a new `i18next.resolvedLanguage` property that represents the current resolved language.  
-It can be used as the primary used language, for example in a language switcher.
+It can be used as the primary used language, for example in a language switcher.  
+
+> **Current Migration Status**  
+> **[DONE]** 
+>	
+> ```
+> git grep nonExplicitWhitelist
+> git grep nonExplicitSupportedLngs
+> git grep isWhitelisted
+> git grep isSupportedCode
+> ```
+>
+>	None of the above return anything related to i18next. 
 
 ---
 
