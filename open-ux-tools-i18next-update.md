@@ -3,15 +3,15 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 
 ## v23.x.x to v24.0.0
 
-- [] Remove support for older environments
-
+- [ ] Remove support for older environments
+      
 > **Current Migration Status** 
 > **[PENDING]** There are no older environments in use that we are aware of.
 > 
 > TODO: Confirm with Austin/Donal/Ian.
 
-- [] Remove old i18next JSON formats  
-  To convert your existing v3 translations to the v4 format, have a look at [`i18next-v4-format-converter`](https://github.com/i18next/i18next-v4-format-converter) or [this web tool](https://format-converter.i18next.com).
+- [ ] Remove old i18next JSON formats  
+  To convert your existing v3 translations to the v4 format, have a look at [`i18next-v4-format-converter`](https://github.com/i18next/i18next-v4-format-converter) or [this web tool](https://format-converter.i18next.com).  
 
 > **Current Migration Status**  
 > **[PENDING]** Under i18next JSON v4, docs state that "The only difference to v3 is the plural suffixes." 
@@ -31,37 +31,38 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 > I noticed a pluralize package in **filesystem.ts** under **data-access** in the **store** package.
 
 
-- [] Remove support for compatibility to the very first v1 API (old docs)
+- [ ] Remove support for compatibility to the very first v1 API (old docs)  
 
 > **Current Migration Status**  
 > **[PENDING]** From inspecting the documentation, it does not appear that we are using the v1 API. 
 >  
 > TODO: Confirm with Austin/Donal/Ian.
 
-- [] `Intl` API is mandatory now and will not fallback anymore.  
+- [ ] `Intl` API is mandatory now and will not fallback anymore.  
   Use a polyfill (`Intl.PluralRules` and `Intl.getCanonicalLocales`) if your environment does not support it.  
   For those who really need the old behaviour, you'll need to create a compatibility layer similar to [this](#).
-> 
+
 > **Current Migration Status** 
 > **[DONE]** We are already using the `Intl` API (e.g. `Intl.DateTimeFormatOptions`) and our environment (Node.js 18+, modern browsers) fully supports required features like `Intl.PluralRules` and `Intl.getCanonicalLocales`. No action required.  
 
 - Renamed `initImmediate` to `initAsync`
 
-- [] Fallback to `dev` language if plural rule not found
+- [ ] Fallback to `dev` language if plural rule not found
 
 > **Current Migration Status** 
 > **[DONE]** dev language is defined by fallbackLng option in init function or else first detected language.  
 > There is a fallnackLng defined in all of the init functions in open-ux-tools.  
 
-- [] Dropped support for Node.js < v14
+- [ ] Dropped support for Node.js < v14
 
 > **Current Migration Status**   
 > **[DONE]** Root package.json states: `"node": ">=18.x"`
 
 ### TypeScript
 
-- [] Now only TypeScript >5 versions are supported.  
+- [ ] Now only TypeScript >5 versions are supported.  
   v4 types are now removed from the codebase.
+
 > **Current Migration Status**  
 > **[PENDING]** TypeScript version is ^4.6.3 in two test applications for integration testing fe-fpm-writer:
 > 
@@ -85,7 +86,7 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 > 
 > TODO: Check if this needs to be updated with Austin/Donal/Ian.  
 
-- [] `jsonFormat` option has been removed.  
+- [ ] `jsonFormat` option has been removed.  
   When a new JSON version is released, you can use the `compatibilityJSON` option, which now only accepts `v4` as value.
 
 > **Current Migration Status**  
@@ -106,7 +107,7 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 
 ## v22.x.x to v23.0.0
 
-- [] Redesigned TypeScript types  
+- [ ] Redesigned TypeScript types  
   This PR redesigned the types to be less complex, faster and easier to maintain.  
   The redesign endeavors to enhance the approach to parsing and inferring keys for the `t` function.  
   Instead of performing a recursive examination of each key-value pair in resources associated with specific namespace(s) each time the `t` function is invoked, we generate a comprehensive set of keys from all namespaces just once.
@@ -138,25 +139,28 @@ npx codemod feedback
 > **Question**  
 > **[PENDING]** Are these codemods optional? They don't appear to be necessary in our case.  
 
-- [] Removed `setDebug` function in internal logger  
+- [ ] Removed `setDebug` function in internal logger  
   Based on [this discussion](#), we decided to remove the `setDebug` function.
+
 > **Current Migration Status**  
 > **[DONE]** Discussion above defines usage as `i18next.logger.setDebug(true);`
 > `git grep setDebug` returns nothing.
 
-- [] Changed default value for `returnNull` option to `false`  
+- [ ] Changed default value for `returnNull` option to `false`  
   To improve the usage for TypeScript users (in combination with React.js) we decided to set the `returnNull` value to `false` by default.  
-  More information can be found [here](#).
+  More information can be found [here](#).  
+
 > **Current Migration Status**  
 > **[DONE]** `git grep returnNull` returns nothing for open-ux-tools.
 
-- [] Dropped support for old browsers and Node.js < v12  
+- [ ] Dropped support for old browsers and Node.js < v12  
   To have smaller builds and faster loads, we now transpile only for modern browsers and runtimes.  
-  More information can be found [here](#).
+  More information can be found [here](#).  
+
 > **Current Migration Status**  
 > **[DONE]** `Node version is >=18.x. Presumably only modern browsers are also supported by open-ux-tools.  
 
-- [] Prefixed ordinal plural keys  
+- [ ] Prefixed ordinal plural keys  
   To help translators, ordinal plural keys are now prefixed with `_ordinal`.
 > **Current Migration Status**  
 > **[PENDING]** 
