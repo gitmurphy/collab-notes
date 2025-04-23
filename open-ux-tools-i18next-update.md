@@ -47,13 +47,13 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 
 - Renamed `initImmediate` to `initAsync`
 
-- [ ] Fallback to `dev` language if plural rule not found
+- [x] Fallback to `dev` language if plural rule not found
 
 > **Current Migration Status** 
 > **[DONE]** dev language is defined by fallbackLng option in init function or else first detected language.  
 > There is a fallnackLng defined in all of the init functions in open-ux-tools.  
 
-- [ ] Dropped support for Node.js < v14
+- [x] Dropped support for Node.js < v14
 
 > **Current Migration Status**   
 > **[DONE]** Root package.json states: `"node": ">=18.x"`
@@ -86,7 +86,7 @@ Taken from [i18next.com](https://www.i18next.com/misc/migration-guide).
 > 
 > TODO: Check if this needs to be updated with Austin/Donal/Ian.  
 
-- [ ] `jsonFormat` option has been removed.  
+- [x] `jsonFormat` option has been removed.  
   When a new JSON version is released, you can use the `compatibilityJSON` option, which now only accepts `v4` as value.
 
 > **Current Migration Status**  
@@ -139,21 +139,21 @@ npx codemod feedback
 > **Question**  
 > **[PENDING]** Are these codemods optional? They don't appear to be necessary in our case.  
 
-- [ ] Removed `setDebug` function in internal logger  
+- [x] Removed `setDebug` function in internal logger  
   Based on [this discussion](#), we decided to remove the `setDebug` function.
 
 > **Current Migration Status**  
 > **[DONE]** Discussion above defines usage as `i18next.logger.setDebug(true);`
 > `git grep setDebug` returns nothing.
 
-- [ ] Changed default value for `returnNull` option to `false`  
+- [x] Changed default value for `returnNull` option to `false`  
   To improve the usage for TypeScript users (in combination with React.js) we decided to set the `returnNull` value to `false` by default.  
   More information can be found [here](#).  
 
 > **Current Migration Status**  
 > **[DONE]** `git grep returnNull` returns nothing for open-ux-tools.
 
-- [ ] Dropped support for old browsers and Node.js < v12  
+- [x] Dropped support for old browsers and Node.js < v12  
   To have smaller builds and faster loads, we now transpile only for modern browsers and runtimes.  
   More information can be found [here](#).  
 
@@ -185,7 +185,7 @@ npx codemod feedback
 
 ## v21.x.x to v22.0.0
 
-Since this is a major rewrite for TypeScript usage, we decided to create a major version.  
+- [x] Since this is a major rewrite for TypeScript usage, we decided to create a major version.  
 For JavaScript users, `v22.0.0` is equivalent to `21.10.0`.  
 
 > **Current Migration Status**  
@@ -197,7 +197,7 @@ For JavaScript users, `v22.0.0` is equivalent to `21.10.0`.
 
 ### JSON format v4 - pluralization
 
-One of the biggest breaking changes is regarding suffixing plurals.  
+- [x] One of the biggest breaking changes is regarding suffixing plurals.  
 This change streamlines the suffix with the one used in the `Intl` API.  
 You may need to polyfill the `Intl.PluralRules` API. In case it is not available, it will fallback to the i18next JSON format v3 plural handling.  
 To enforce old behaviour, you can enable `compatibilityJSON = 'v3'` on i18next init call.
@@ -246,7 +246,7 @@ i18next.init({
 
 ### Natural language detection
 
-i18next now automatically tries to detect natural language keys.  
+- [x] i18next now automatically tries to detect natural language keys.  
 This way there is no need to set `nsSeparator` or `keySeparator` option to `false`.  
 In case you want to skip this natural language detection, provide a `keySeparator` and/or a `nsSeparator` option.  
 
@@ -263,11 +263,14 @@ The old deprecated `whitelist` options and functions have been definitively remo
 - Rename option `nonExplicitWhitelist` to `nonExplicitSupportedLngs`
 - Rename function `languageUtils.isWhitelisted` to `languageUtils.isSupportedCode`
 
+> **Current Migration Status**  
+> **[PENDING]**
+
 ---
 
 ### New `resolvedLanguage`
 
-There is a new `i18next.resolvedLanguage` property that represents the current resolved language.  
+- [x] There is a new `i18next.resolvedLanguage` property that represents the current resolved language.  
 It can be used as the primary used language, for example in a language switcher.  
 
 > **Current Migration Status**  
@@ -286,4 +289,7 @@ It can be used as the primary used language, for example in a language switcher.
 
 ### `defaultNS`
 
-If passing the `ns` option, the `defaultNS` will, by default, be set to the first `ns` passed.
+- [ ] If passing the `ns` option, the `defaultNS` will, by default, be set to the first `ns` passed.
+
+> **Current Migration Status**  
+> **[PENDING]** 
